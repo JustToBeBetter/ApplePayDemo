@@ -105,7 +105,7 @@
                        didAuthorizePayment:(PKPayment *)payment
                                 completion:(void (^)(PKPaymentAuthorizationStatus status))completion{
     NSLog(@"支付已授权: payment%@", payment);
-    BOOL asyncSuccessful = NO;
+    BOOL asyncSuccessful = NO;//模拟支付失败
     
 //    PKPaymentToken *payToken = payment.token;
 //    //支付凭据，发给服务端进行验证支付是否真实有效
