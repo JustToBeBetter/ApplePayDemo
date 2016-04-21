@@ -41,16 +41,16 @@
             
             PKPaymentRequest *request = [[PKPaymentRequest alloc] init];
             
-            PKPaymentSummaryItem *goods1 = [PKPaymentSummaryItem summaryItemWithLabel:@"修身小马甲"
+            PKPaymentSummaryItem *goods = [PKPaymentSummaryItem summaryItemWithLabel:@"修身小马甲"
                                                                                 amount:[NSDecimalNumber decimalNumberWithString:@"698.00"]];
             
-            PKPaymentSummaryItem *goods2 = [PKPaymentSummaryItem summaryItemWithLabel:@"无敌风火轮"
+            PKPaymentSummaryItem *goods1 = [PKPaymentSummaryItem summaryItemWithLabel:@"无敌风火轮"
                                                                                 amount:[NSDecimalNumber decimalNumberWithString:@"998.00"]];
             
             PKPaymentSummaryItem *total = [PKPaymentSummaryItem summaryItemWithLabel:@"杭州像我一样科技有限公司"
                                                                               amount:[NSDecimalNumber decimalNumberWithString:@"0.11"]];
             
-            _summaryItemsArray = [NSMutableArray arrayWithArray:@[goods1, goods2, total]];
+            _summaryItemsArray = [NSMutableArray arrayWithArray:@[goods, goods1, total]];
             
             request.paymentSummaryItems = _summaryItemsArray;
             request.countryCode = @"CN";//中国 国家代码
@@ -149,30 +149,30 @@
     // 隐藏支付控制器
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
-//选择实现的代理方法
-- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
-                   didSelectShippingMethod:(PKShippingMethod *)shippingMethod
-                                completion:(void (^)(PKPaymentAuthorizationStatus status, NSArray<PKPaymentSummaryItem *> *summaryItems))completion{
-//    //配送方式回调，如果需要根据不同的送货方式进行支付金额的调整，比如包邮和付费加速配送，可以实现该代理
-//    PKShippingMethod *oldShippingMethod = [_summaryItemsArray objectAtIndex:2];
-//    PKPaymentSummaryItem *total = [_summaryItemsArray lastObject];
-//    total.amount = [total.amount decimalNumberBySubtracting:oldShippingMethod.amount];
-//    total.amount = [total.amount decimalNumberByAdding:shippingMethod.amount];
+////选择实现的代理方法
+//- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
+//                   didSelectShippingMethod:(PKShippingMethod *)shippingMethod
+//                                completion:(void (^)(PKPaymentAuthorizationStatus status, NSArray<PKPaymentSummaryItem *> *summaryItems))completion{
+////    //配送方式回调，如果需要根据不同的送货方式进行支付金额的调整，比如包邮和付费加速配送，可以实现该代理
+////    PKShippingMethod *oldShippingMethod = [_summaryItemsArray objectAtIndex:2];
+////    PKPaymentSummaryItem *total = [_summaryItemsArray lastObject];
+////    total.amount = [total.amount decimalNumberBySubtracting:oldShippingMethod.amount];
+////    total.amount = [total.amount decimalNumberByAdding:shippingMethod.amount];
+////
+////    completion(PKPaymentAuthorizationStatusSuccess, _summaryItemsArray);
+//    
+//}
+//- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
+//                  didSelectShippingContact:(PKContact *)contact
+//                                completion:(void (^)(PKPaymentAuthorizationStatus status, NSArray<PKShippingMethod *> *shippingMethods,
+//                                                     NSArray<PKPaymentSummaryItem *> *summaryItems))completion{
+//    //contact送货地址信息，PKContact类型
 //
-//    completion(PKPaymentAuthorizationStatusSuccess, _summaryItemsArray);
-    
-}
-- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller
-                  didSelectShippingContact:(PKContact *)contact
-                                completion:(void (^)(PKPaymentAuthorizationStatus status, NSArray<PKShippingMethod *> *shippingMethods,
-                                                     NSArray<PKPaymentSummaryItem *> *summaryItems))completion{
-    //contact送货地址信息，PKContact类型
-
-    
-}
-- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didSelectPaymentMethod:(PKPaymentMethod *)paymentMethod completion:(void (^)(NSArray<PKPaymentSummaryItem *> * _Nonnull))completion{
-    //支付银行卡回调，如果需要根据不同的银行调整付费金额，可以实现该代理
-  
-}
+//    
+//}
+//- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didSelectPaymentMethod:(PKPaymentMethod *)paymentMethod completion:(void (^)(NSArray<PKPaymentSummaryItem *> * _Nonnull))completion{
+//    //支付银行卡回调，如果需要根据不同的银行调整付费金额，可以实现该代理
+//  
+//}
 
 @end
